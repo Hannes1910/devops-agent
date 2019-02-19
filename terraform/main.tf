@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "hannes-rg-vsts-agent" {
+resource "azurerm_resource_group" "aci-rg" {
   name     = "hannes-rg-vsts-agent"
   location = "westeurope"
 }
