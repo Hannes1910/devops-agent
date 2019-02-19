@@ -37,7 +37,7 @@ resource "azurerm_container_group" "aci-vsts" {
   os_type             = "linux"
 
   container {
-    name   = "hannes-vsts-agent"
+    name   = "vsts-agent"
     image  = "lenisha/vsts-agent-infrastructure"
     cpu    = "0.5"
     memory = "1.5"
