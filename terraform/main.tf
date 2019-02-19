@@ -1,6 +1,6 @@
-resource "azurerm_resource_group" "aci-rg" {
-  name     = "aci-vsts"
-  location = "westus2"
+resource "azurerm_resource_group" "hannes-rg-vsts-agent" {
+  name     = "hannes-rg-vsts-agent"
+  location = "westeurope"
 }
 
 resource "random_id" "randomId" {
@@ -13,7 +13,7 @@ resource "random_id" "randomId" {
 }
 
 resource "azurerm_storage_account" "aci-sa" {
-  name                = "acisa${random_id.randomId.hex}"
+  name                = "hannessavsts${random_id.randomId.hex}"
   resource_group_name = "${azurerm_resource_group.aci-rg.name}"
   location            = "${azurerm_resource_group.aci-rg.location}"
   account_tier        = "Standard"
@@ -22,7 +22,7 @@ resource "azurerm_storage_account" "aci-sa" {
 }
 
 resource "azurerm_storage_share" "aci-share" {
-  name                 = "aci-vsts-share"
+  name                 = "hannes-vsts-share"
   resource_group_name  = "${azurerm_resource_group.aci-rg.name}"
   storage_account_name = "${azurerm_storage_account.aci-sa.name}"
 
@@ -30,14 +30,14 @@ resource "azurerm_storage_share" "aci-share" {
 }
 
 resource "azurerm_container_group" "aci-vsts" {
-  name                = "aci-agent"
+  name                = "hannes-aci-agent"
   location            = "${azurerm_resource_group.aci-rg.location}"
   resource_group_name = "${azurerm_resource_group.aci-rg.name}"
   ip_address_type     = "public"
   os_type             = "linux"
 
   container {
-    name   = "vsts-agent"
+    name   = "hannes-vsts-agent"
     image  = "lenisha/vsts-agent-infrastructure"
     cpu    = "0.5"
     memory = "1.5"
