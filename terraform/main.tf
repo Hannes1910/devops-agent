@@ -62,6 +62,6 @@ resource "azurerm_container_group" "aci-vsts" {
   }
 
   tags {
-    environment = "testing"
+    delete = "NO"
   }
 }
